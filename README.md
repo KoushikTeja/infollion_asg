@@ -138,3 +138,7 @@ Incoming IP: 192.168.1.1 -> Routed to: Node-B
 * Python
 * Flask
 * Consistent Hashing
+
+# High Level overview
+<img width="1578" height="974" alt="image" src="https://github.com/user-attachments/assets/be543065-3eff-4771-9e6a-f962ebda7f1e" />
+
