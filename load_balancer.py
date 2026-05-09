@@ -1,5 +1,6 @@
-import hashlib
 import bisect
+
+from hashing import get_hash
 
 
 class ConsistentHashLoadBalancer:
@@ -14,10 +15,6 @@ class ConsistentHashLoadBalancer:
 
         self.build_ring()
 
-    def get_hash(self, key):
-
-        return int(hashlib.md5(key.encode()).hexdigest(), 16)
-
     def build_ring(self):
 
         self.ring.clear()
@@ -26,7 +23,7 @@ class ConsistentHashLoadBalancer:
 
         for node in self.nodes:
 
-            node_hash = self.get_hash(node)
+            node_hash = get_hash(node)
 
             self.ring[node_hash] = node
 
@@ -55,7 +52,7 @@ class ConsistentHashLoadBalancer:
         if not self.ring:
             return None
 
-        ip_hash = self.get_hash(ip)
+        ip_hash = get_hash(ip)
 
         index = bisect.bisect(self.sorted_keys, ip_hash)
 

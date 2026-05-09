@@ -1,18 +1,18 @@
 from flask import Flask, request, jsonify
+
 from load_balancer import ConsistentHashLoadBalancer
+from nodes import nodes
 from logger import log_request
 
 app = Flask(__name__)
 
-# Initial Nodes
-nodes = ["Node-A", "Node-B", "Node-C"]
-
-# Create Load Balancer
+# Initialize Load Balancer
 lb = ConsistentHashLoadBalancer(nodes)
 
 
 @app.route("/")
 def home():
+
     return jsonify({
         "message": "Consistent Hashing Load Balancer Running"
     })
